@@ -1,0 +1,56 @@
+# Copyright 6 Deutsche Telekom AG
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: ORT scanning
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ort:
+    name: ORT scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use HTTPS for Git cloning
+        run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
+        
+      - name: Checkout project
+        uses: actions/checkout@v6
+        
+      - name: Prepare ORT config
+        # This allows us to customize the default ORT config available at
+        # https://github.com/telekom/ort-config
+        # using our own config file stored in .github/ort/config.yml
+        # This allows to account for github specific settings - i.e. paths.
+        run: |
+          export ORT_CONFIG_DIR=$HOME/.ort/config
+          mkdir -p ${ORT_CONFIG_DIR}
+          
+          cd ${ORT_CONFIG_DIR}
+          git init -q
+          git remote add origin https://github.com/telekom/ort-config.git
+          git fetch -q --depth 1 origin main
+          git checkout -q FETCH_HEAD
+          
+          yq -i ". *= load(\"${GITHUB_WORKSPACE}/.github/ort/config.yml\")" config.yml
+
+      - name: Run GitHub Action for ORT
+        uses: oss-review-toolkit/ort-ci-github-action@main #update this once they switched to stable versions
+        with:
+          docker-cli-args: >-
+            -e ORT_ARTIFACTORY_TOKEN=${{ secrets.OSPO_ORT_ARTIFACTORY_CACHE_REPO_KEY }}
+            -e ORT_ARTIFACTORY_URL=${{ secrets.OSPO_ORT_ARTIFACTORY_CACHE_REPO_URL }}
+          run: >
+            cache-dependencies,
+            cache-scan-results,
+            labels,
+            analyzer,
+            scanner,
+            advisor,
+            evaluator,
+            reporter,
+            upload-results
