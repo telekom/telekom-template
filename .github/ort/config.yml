@@ -22,7 +22,3 @@ ort:
               Authorization: "Bearer ${ORT_ARTIFACTORY_TOKEN}"
     storageReaders: ["local", "artifactory"]
     storageWriters: ["artifactory", "local"]
-    skipExcluded: true
-    skipConcluded: true
-  advisor:
-    skipExcluded: true
