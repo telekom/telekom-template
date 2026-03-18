@@ -27,18 +27,15 @@ jobs:
         # using our own config file stored in .github/ort/config.yml
         # This allows to account for github specific settings - i.e. paths.
         run: |
-          # Setup config dir
           export ORT_CONFIG_DIR=$HOME/.ort/config
           mkdir -p ${ORT_CONFIG_DIR}
           
-          # Checkout default config repo into config dir
           cd ${ORT_CONFIG_DIR}
           git init -q
           git remote add origin https://github.com/telekom/ort-config.git
           git fetch -q --depth 1 origin main
           git checkout -q FETCH_HEAD
           
-          # Merge custom config overrides into the downloaded base config
           yq -i ". *= load(\"${GITHUB_WORKSPACE}/.github/ort/config.yml\")" config.yml
 
       - name: Run GitHub Action for ORT
