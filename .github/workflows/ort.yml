@@ -42,7 +42,7 @@ jobs:
           yq -i ". *= load(\"${GITHUB_WORKSPACE}/.github/ort/config.yml\")" config.yml
 
       - name: Run GitHub Action for ORT
-        uses: oss-review-toolkit/ort-ci-github-action@v1
+        uses: oss-review-toolkit/ort-ci-github-action@main #update this once they switched to stable versions
         with:
           docker-cli-args: >-
             -e ORT_ARTIFACTORY_TOKEN=${{ secrets.OSPO_ORT_ARTIFACTORY_CACHE_REPO_KEY }}
