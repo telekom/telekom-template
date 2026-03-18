@@ -7,7 +7,7 @@ version = 1
 
 ## Example:
 # [[annotations]]
-# path = [".github/workflows/*.yml"]
+# path = [".github/workflows/reuse-compliance.yml"]
 # precedence = "aggregate"
 # SPDX-FileCopyrightText = "2022 Free Software Foundation Europe e.V. <https://fsfe.org>"
 # SPDX-License-Identifier = "CC0-1.0"
