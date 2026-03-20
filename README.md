@@ -1,12 +1,12 @@
 <!--
-SPDX-FileCopyrightText: 2023 Deutsche Telekom AG
+SPDX-FileCopyrightText: 2026 Deutsche Telekom AG
 
 SPDX-License-Identifier: CC0-1.0    
 -->
 
 # my-sample-project
 
-[![REUSE Compliance Check](https://github.com/telekom/reuse-template/actions/workflows/reuse-compliance.yml/badge.svg)](https://github.com/telekom/reuse-template/actions/workflows/reuse-compliance.yml)
+[![REUSE Compliance Check](../../actions/workflows/reuse-compliance.yml/badge.svg)](../../actions/workflows/reuse-compliance.yml)
 
 ## About
 
