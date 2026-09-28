@@ -9,6 +9,8 @@ SPDX-License-Identifier: CC0-1.0
 [![REUSE Compliance Check](../../actions/workflows/reuse-compliance.yml/badge.svg)](../../actions/workflows/reuse-compliance.yml)
 [![OpenSSF Scorecard Score](https://api.scorecard.dev/projects/github.com/telekom/telekom-template/badge)](https://scorecard.dev/viewer/?uri=github.com/telekom/telekom-template/badge)
 
+test
+
 ## About
 
 my-sample-project is a ...
